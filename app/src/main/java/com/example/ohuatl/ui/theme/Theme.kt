@@ -36,16 +36,11 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun OhuatlTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    // Forzar paleta verde propia; desactivar dynamic color para evitar azules del sistema
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
